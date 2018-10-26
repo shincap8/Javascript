@@ -1,4 +1,4 @@
-var Calculadora= {
+var Calculadora= { 
     //---------------Iniciador de todas las funciones---------
     init: function () {
         this.cambiarbotones('tecla');
@@ -9,8 +9,7 @@ var Calculadora= {
    operadorA : "",
    operadorB : "",
    operacion : "",
-   operacionX: "",
-   X: "",
+   numeroX : "",
    
 
     //--------------------Mostrar Numeros y hacer operaciones en Pantalla----------------------
@@ -76,25 +75,47 @@ var Calculadora= {
             this.operadorA = 0;
             this.operadorB = 0;
             this.operacion = "";
+            this.numeroX = 0;
         }
     //----------------------Función para calculo matematico----------------
         function calculo() {
             var cal = 0;
             switch (operacion) {
                 case "+":
-                    cal = parseFloat(operadorA) + parseFloat(operadorB)
+                    if (operadorA == 0) {
+                        cal = parseFloat(operadorB) + parseFloat(numeroX)
+                    }else {
+                        cal = parseFloat(operadorA) + parseFloat(operadorB)
+                        this.numeroX = operadorB;
+                    }
                     break;
                 case "-":
-                    cal = parseFloat(operadorA) - parseFloat(operadorB)
+                    if (operadorA == 0) {
+                        cal = parseFloat(operadorB) - parseFloat(numeroX)
+                    } else {
+                        cal = parseFloat(operadorA) - parseFloat(operadorB)
+                        this.numeroX = operadorB;
+                    }
                     break;
                 case "*":
-                    cal = parseFloat(operadorA) * parseFloat(operadorB)
+                    if (operadorA == 0) {
+                        cal = parseFloat(operadorB) * parseFloat(numeroX)
+                    } else {
+                        cal = parseFloat(operadorA) * parseFloat(operadorB)
+                        this.numeroX = operadorB;
+                    }
                     break;
                 case "/":
-                    cal = parseFloat(operadorA) / parseFloat(operadorB)
+                    if (operadorA == 0) {
+                        cal = parseFloat(operadorB) / parseFloat(numeroX)
+                    } else {
+                        cal = parseFloat(operadorA) / parseFloat(operadorB)
+                        this.numeroX = operadorB;
+                    }
                     break;
             }
-            if (cal>7) {
+            cal = cal.toString();
+            if (cal.length>8) {
                 this.display.textContent = cal
                 this.display.textContent = this.display.textContent.slice(0,8)
             } else {
