@@ -9,6 +9,9 @@ var Calculadora= {
    operadorA : "",
    operadorB : "",
    operacion : "",
+   operacionX: "",
+   X: "",
+   
 
     //--------------------Mostrar Numeros y hacer operaciones en Pantalla----------------------
     pantalla: function (selector) {
@@ -43,7 +46,7 @@ var Calculadora= {
             } else if (boton == "mas") {
                 this.operadorA = this.display.textContent;
                 this.display.textContent = "";
-                operacion = "+"
+                operacion = "+";
                 //----------------------Resta--------------------------------------
             } else if (boton == "menos") {
                 this.operadorA = this.display.textContent;
@@ -91,8 +94,15 @@ var Calculadora= {
                     cal = parseFloat(operadorA) / parseFloat(operadorB)
                     break;
             }
-            this.display.textContent = ""
-            this.display.textContent = cal;
+            if (cal>7) {
+                this.display.textContent = cal
+                this.display.textContent = this.display.textContent.slice(0,8)
+            } else {
+                this.display.textContent = ""
+                this.display.textContent = cal;
+            }
+            this.operadorA = 0;
+            this.operadorB = 0;
         }
     },
     //------------------------------------------------------
